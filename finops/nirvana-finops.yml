@@ -1,0 +1,93 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Nirvana Health
+providerId: nirvana
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Healthcare
+- Insurance
+- Eligibility
+- Cost Estimation
+- Behavioral Health
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Nirvana Coverage API and Eligibility Management Platform spend.
+  Nirvana is sold under negotiated commercial agreements rather than public
+  usage-based rates, so unit economics (per coverage check, per estimate, per
+  seat, or platform subscription) are not publicly disclosed. The natural cost
+  drivers are coverage checks (discover, scan, medicaid) and cost estimates,
+  which map to verification volume and upcoming-appointment monitoring cadence.
+  Quantitative meter rates are not reconciled in this artifact.
+notes: >-
+  Obtain the contracted pricing schedule and any volume tiers from Nirvana to
+  reconcile per-unit costs. Allocate spend by office_id and provider_npi, which
+  are accepted on requests and support per-location and per-provider attribution.
+sources:
+- https://www.meetnirvana.com/our-technology
+- https://nirvana-docs.readme.io/docs/nirvana-overview-v2
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Nirvana Health
+serviceCategory: Healthcare and Insurance
+billingModel:
+  pricingCategory: Commitment-Based
+  billingFrequency: Negotiated
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+focusColumns:
+  ServiceName: Nirvana Coverage API
+  ServiceCategory: Healthcare and Insurance
+  ProviderName: Nirvana Health
+  PublisherName: Nirvana Health
+  InvoiceIssuerName: Nirvana Health
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Commitment-Based
+meters:
+- name: coverage_checks
+  description: Eligibility/coverage discovery calls (discover, scan, medicaid). Rate not publicly disclosed.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - office_id
+  - provider_npi
+- name: cost_estimates
+  description: Real-time patient cost estimate calls (estimate). Rate not publicly disclosed.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - office_id
+  - provider_npi
+- name: monitored_appointments
+  description: Upcoming appointments under continuous benefit monitoring. Rate not publicly disclosed.
+  unit: appointments
+  aggregation: sum
+  dimensions:
+  - account
+  - office_id
+principles:
+- name: Visibility
+  description: Track coverage-check and estimate call volume; attribute via office_id and provider_npi.
+- name: Allocation
+  description: Map verification spend to locations, providers, and patient intake workflows.
+- name: Optimization
+  description: Use Cardless Verification to reduce failed checks; tune monitoring cadence to avoid redundant re-checks.
+- name: Accountability
+  description: Reconcile contracted rates against actual call volume each billing period.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

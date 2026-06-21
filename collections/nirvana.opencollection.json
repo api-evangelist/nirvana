@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nirvana Coverage API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "apikey": {
+        "key": "apikey",
+        "value": "{{apiKey}}",
+        "in": "header"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Eligibility & Coverage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discover active coverage and plan-level details for a patient.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://coverage-api.meetnirvana.com/v1/discover",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"member_first_name\": \"\",\n  \"member_last_name\": \"\",\n  \"member_dob\": \"\",\n  \"provider_npi\": \"\"\n}"
+            }
+          },
+          "docs": "Find active coverage and plan-level details for a patient, including Cardless Verification from basic demographics."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Coverage Scan",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Scan multiple payers to find any patient's active coverage.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://coverage-api.meetnirvana.com/v1/scan",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"member_first_name\": \"\",\n  \"member_last_name\": \"\",\n  \"member_dob\": \"\",\n  \"provider_npi\": \"\"\n}"
+            }
+          },
+          "docs": "Scan multiple payers to find any active coverage a patient may have when the payer is unknown."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Cost Estimation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Real-time cost estimate & benefit details for a patient's session.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://coverage-api.meetnirvana.com/v1/estimate",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"member_first_name\": \"\",\n  \"member_last_name\": \"\",\n  \"member_dob\": \"\",\n  \"provider_npi\": \"\",\n  \"provider_session_cost\": 0,\n  \"in_network\": true\n}"
+            }
+          },
+          "docs": "Return a real-time cost estimate and benefit details for a patient's session."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Medicaid",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Find active Medicaid coverage & Medicaid-level details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://coverage-api.meetnirvana.com/v1/medicaid",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"member_first_name\": \"\",\n  \"member_last_name\": \"\",\n  \"member_dob\": \"\",\n  \"provider_npi\": \"\"\n}"
+            }
+          },
+          "docs": "Find active Medicaid coverage and Medicaid-level details for a patient."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

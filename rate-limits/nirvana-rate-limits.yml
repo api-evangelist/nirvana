@@ -1,0 +1,47 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Nirvana Health
+providerId: nirvana
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Healthcare
+- Insurance
+- Eligibility
+- Cost Estimation
+- Behavioral Health
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The Nirvana Coverage API returns HTTP 429 when a client exceeds its allowed
+  request rate, indicating per-account throttling. Specific numeric thresholds
+  (requests per minute/day or concurrency) are not published in the public
+  documentation and are governed by the customer's commercial agreement. Values
+  are not reconciled in this artifact.
+notes: >-
+  Confirm concrete per-account limits and recommended concurrency with Nirvana
+  during onboarding. The documented error contract returns error, message, and
+  errors fields on 4xx/5xx responses.
+sources:
+- https://nirvana-docs.readme.io/docs/nirvana-overview-v2
+- https://nirvana-docs.readme.io/docs/best-practices
+- https://nirvana-docs.readme.io/reference/medicaid_v1_medicaid_post
+responseCodes:
+  throttled: 429
+limits:
+- name: Requests Per Account
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Account-level throttling enforced; 429 returned when exceeded. Numeric limit not publicly disclosed.
+policies:
+- name: Backoff Strategy
+  description: Clients should implement retry with exponential backoff on 429 and 5xx responses.
+- name: Error Handling
+  description: 4xx/5xx responses include error, message, and errors fields; branch on the error code for robust handling.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

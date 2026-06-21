@@ -1,0 +1,137 @@
+{
+  "info": {
+    "name": "Nirvana Coverage API",
+    "description": "Nirvana's Coverage API verifies insurance eligibility, returns payer-normalized benefits, and estimates patient cost for behavioral health sessions. Authenticate with your Nirvana-issued key in the apikey header.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "apikey", "type": "string" },
+      { "key": "value", "value": "{{apiKey}}", "type": "string" },
+      { "key": "in", "value": "header", "type": "string" }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://coverage-api.meetnirvana.com",
+      "type": "string"
+    },
+    {
+      "key": "apiKey",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Eligibility & Coverage",
+      "item": [
+        {
+          "name": "Discover active coverage",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "apikey", "value": "{{apiKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/discover",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "discover"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"member_first_name\": \"\",\n  \"member_last_name\": \"\",\n  \"member_dob\": \"\",\n  \"provider_npi\": \"\",\n  \"member_id\": \"\",\n  \"payer_id\": \"\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Find active coverage and plan-level details for a patient, including Cardless Verification from basic demographics."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Coverage Scan",
+      "item": [
+        {
+          "name": "Scan payers for active coverage",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "apikey", "value": "{{apiKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/scan",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "scan"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"member_first_name\": \"\",\n  \"member_last_name\": \"\",\n  \"member_dob\": \"\",\n  \"provider_npi\": \"\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Scan multiple payers to find any active coverage a patient may have when the payer is unknown."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Cost Estimation",
+      "item": [
+        {
+          "name": "Estimate patient cost for a session",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "apikey", "value": "{{apiKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/estimate",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "estimate"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"member_first_name\": \"\",\n  \"member_last_name\": \"\",\n  \"member_dob\": \"\",\n  \"provider_npi\": \"\",\n  \"provider_session_cost\": 0,\n  \"in_network\": true\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Return a real-time cost estimate and benefit details for a patient's session."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Medicaid",
+      "item": [
+        {
+          "name": "Find Medicaid coverage",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "apikey", "value": "{{apiKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v1/medicaid",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "medicaid"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"member_first_name\": \"\",\n  \"member_last_name\": \"\",\n  \"member_dob\": \"\",\n  \"provider_npi\": \"\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Find active Medicaid coverage and Medicaid-level details for a patient."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

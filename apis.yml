@@ -1,0 +1,155 @@
+aid: nirvana
+url: https://raw.githubusercontent.com/api-evangelist/nirvana/refs/heads/main/apis.yml
+name: Nirvana Health
+kind: company
+description: Nirvana is a real-time insurance eligibility, benefits, and patient
+  cost-estimation platform purpose-built for behavioral and mental health. Its
+  Coverage API normalizes complex payer data into structured JSON, returning
+  eligibility, plan-level benefits, patient cost-share, session limits, and prior
+  authorization details, and can recover active coverage from only basic patient
+  demographics.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Healthcare
+- Insurance
+- Eligibility
+- Benefits
+- Cost Estimation
+- Behavioral Health
+created: '2026-06-21'
+modified: '2026-06-21'
+specificationVersion: '0.19'
+apis:
+- aid: nirvana:eligibility-coverage-api
+  name: Nirvana Eligibility & Coverage API
+  tags:
+  - Eligibility
+  - Coverage
+  - Discover
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://nirvana-docs.readme.io/docs/nirvana-overview-v2
+  baseURL: https://coverage-api.meetnirvana.com/v1
+  properties:
+  - url: https://nirvana-docs.readme.io/docs/nirvana-overview-v2
+    type: Documentation
+  - url: https://nirvana-docs.readme.io/reference
+    type: APIReference
+  - url: openapi/nirvana-openapi.yml
+    type: OpenAPI
+  - url: collections/nirvana.postman_collection.json
+    type: PostmanCollection
+  - url: collections/nirvana.opencollection.json
+    type: OpenCollection
+  description: Real-time insurance eligibility and active-coverage discovery. The
+    discover operation finds active coverage and plan-level details for a patient,
+    including Cardless Verification that recovers coverage from only basic
+    demographics (name, date of birth, ZIP).
+- aid: nirvana:coverage-scan-api
+  name: Nirvana Coverage Scan API
+  tags:
+  - Coverage
+  - Scan
+  - Discovery
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://nirvana-docs.readme.io/docs/nirvana-overview-v2
+  baseURL: https://coverage-api.meetnirvana.com/v1
+  properties:
+  - url: https://nirvana-docs.readme.io/docs/nirvana-overview-v2
+    type: Documentation
+  - url: https://nirvana-docs.readme.io/reference
+    type: APIReference
+  - url: openapi/nirvana-openapi.yml
+    type: OpenAPI
+  - url: collections/nirvana.postman_collection.json
+    type: PostmanCollection
+  - url: collections/nirvana.opencollection.json
+    type: OpenCollection
+  description: Scans multiple payers to locate any active coverage a patient may
+    have when the payer is unknown, returning matched coverage with normalized
+    plan details.
+- aid: nirvana:benefits-api
+  name: Nirvana Benefits API
+  tags:
+  - Benefits
+  - Plan Details
+  - Behavioral Health
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://nirvana-docs.readme.io/docs/nirvana-overview-v2
+  baseURL: https://coverage-api.meetnirvana.com/v1
+  properties:
+  - url: https://www.meetnirvana.com/our-technology
+    type: Documentation
+  - url: https://nirvana-docs.readme.io/reference
+    type: APIReference
+  - url: openapi/nirvana-openapi.yml
+    type: OpenAPI
+  - url: collections/nirvana.postman_collection.json
+    type: PostmanCollection
+  - url: collections/nirvana.opencollection.json
+    type: OpenCollection
+  description: Specialty-specific, payer-normalized benefit details returned within
+    coverage and estimate responses - patient cost-share, copay, coinsurance,
+    deductible, out-of-pocket maximum, session limits, telehealth coverage, and
+    prior authorization requirements for behavioral health services.
+- aid: nirvana:cost-estimation-api
+  name: Nirvana Cost Estimation API
+  tags:
+  - Cost Estimation
+  - Patient Responsibility
+  - Estimate
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://nirvana-docs.readme.io/docs/nirvana-overview-v2
+  baseURL: https://coverage-api.meetnirvana.com/v1
+  properties:
+  - url: https://www.meetnirvana.com/patient-intake
+    type: Documentation
+  - url: https://nirvana-docs.readme.io/reference
+    type: APIReference
+  - url: openapi/nirvana-openapi.yml
+    type: OpenAPI
+  - url: collections/nirvana.postman_collection.json
+    type: PostmanCollection
+  - url: collections/nirvana.opencollection.json
+    type: OpenCollection
+  description: Real-time per-session patient cost estimates. The estimate operation
+    returns the patient's expected financial responsibility for an appointment
+    based on provider session cost, network status, CPT/modality, and the
+    patient's active benefits.
+- aid: nirvana:medicaid-api
+  name: Nirvana Medicaid API
+  tags:
+  - Medicaid
+  - Eligibility
+  - Coverage
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://nirvana-docs.readme.io/reference/medicaid_v1_medicaid_post
+  baseURL: https://coverage-api.meetnirvana.com/v1
+  properties:
+  - url: https://nirvana-docs.readme.io/docs/nirvana-overview-v2
+    type: Documentation
+  - url: https://nirvana-docs.readme.io/reference/medicaid_v1_medicaid_post
+    type: APIReference
+  - url: openapi/nirvana-openapi.yml
+    type: OpenAPI
+  - url: collections/nirvana.postman_collection.json
+    type: PostmanCollection
+  - url: collections/nirvana.opencollection.json
+    type: OpenCollection
+  description: Finds active Medicaid coverage and Medicaid-level eligibility details
+    for a patient, supporting Medicaid payers nationwide.
+common:
+- type: LinkedIn
+  url: https://www.linkedin.com/company/nirvana-hlth
+- type: Website
+  url: https://www.meetnirvana.com
+- type: Documentation
+  url: https://nirvana-docs.readme.io/docs/nirvana-overview-v2
+- type: Plans
+  url: plans/nirvana-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/nirvana-rate-limits.yml
+- type: FinOps
+  url: finops/nirvana-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

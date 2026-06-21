@@ -1,0 +1,61 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Nirvana Health
+providerId: nirvana
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Healthcare
+- Insurance
+- Eligibility
+- Benefits
+- Cost Estimation
+- Behavioral Health
+- Plans
+description: >-
+  Nirvana does not publish public, self-service pricing for its Coverage API or
+  Eligibility Management Platform. Access is sales-led: prospective customers
+  contact Nirvana to set up an account and be issued an API key, and pricing is
+  negotiated per deal. Published rates, per-call costs, free tiers, and trial
+  terms are not disclosed and are not reconciled in this artifact.
+notes: >-
+  Verify current commercial terms directly with Nirvana sales. No public pricing
+  page exists as of the created date; entries below are structural placeholders
+  marked unreconciled.
+sources:
+- https://www.meetnirvana.com
+- https://www.meetnirvana.com/our-technology
+- https://nirvana-docs.readme.io/docs/nirvana-overview-v2
+plans:
+- id: nirvana-platform
+  name: Eligibility Management Platform & Coverage API
+  type: enterprise
+  description: >-
+    Sales-led access to the OneVerify eligibility management platform and the
+    Coverage API (discover, scan, estimate, medicaid). Includes EHR/EMR
+    integrations and continuous benefit monitoring. Pricing negotiated per
+    customer; contact Nirvana.
+  entries:
+  - label: Commercial Agreement
+    name: commercial
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: us
+    unit: 1
+    price: contact sales (not publicly disclosed)
+    userMultiplied: false
+  elements:
+  - name: Eligibility & Coverage (Discover)
+  - name: Coverage Scan
+  - name: Benefits
+  - name: Cost Estimation (Estimate)
+  - name: Medicaid
+  - name: EHR Integration
+  - name: Benefit Monitoring
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

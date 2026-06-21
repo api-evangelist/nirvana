@@ -1,0 +1,102 @@
+aid: nirvana
+name: Nirvana Health
+review:
+  question: >-
+    Is this catalog entry for the correct "Nirvana" - the real-time insurance
+    eligibility, benefits, and cost-estimation API for behavioral health at
+    meetnirvana.com - and does it accurately reflect the documented API surface
+    (including any Claims and Webhooks APIs)?
+  answer: true
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No public event-driven, webhook, or streaming API surface is documented for
+    Nirvana, so no AsyncAPI document was created. Nirvana's "continuous benefit
+    monitoring" notifies provider teams of eligibility changes inside the
+    OneVerify product, but no public webhook/callback HTTP endpoint or event
+    schema is published in the developer documentation as of the review date.
+findings:
+  summary: |
+    This entry profiles Nirvana Health (meetnirvana.com), a New York-based
+    company founded in 2020 that provides AI-driven, real-time insurance
+    eligibility verification, payer-normalized benefits, and patient
+    cost-estimation, purpose-built for behavioral and mental health (and
+    expanding into physical therapy, IOP, and primary care). It raised a
+    $24.2M Series A led by Northzone in 2024.
+
+    The public Coverage API is REST/JSON over HTTPS at
+    https://coverage-api.meetnirvana.com/v1 and authenticates with a customer
+    API key passed in the `apikey` request header (NOT an OAuth Bearer token).
+    The four documented operations are POST /v1/discover (active coverage +
+    eligibility), POST /v1/scan (multi-payer coverage discovery), POST
+    /v1/estimate (real-time patient cost estimate), and POST /v1/medicaid
+    (Medicaid coverage). Benefits (copay, coinsurance, deductible,
+    out-of-pocket, session limits, prior auth, telehealth) are returned within
+    these coverage/estimate responses rather than via a standalone endpoint.
+
+    The original build brief listed "Claims" and "Webhooks" APIs. Neither is a
+    documented public API surface: no claims-submission/status endpoint and no
+    webhook/callback endpoint or event schema appear in the Nirvana developer
+    docs. The company markets that it "takes care of mental health insurance
+    claims" and offers monitoring notifications inside its product, but these
+    are not exposed as public, documented HTTP APIs. To avoid fabrication, no
+    Claims or Webhooks API entries were created; only the documented coverage,
+    scan, estimate, benefits, and Medicaid surfaces are cataloged.
+  disambiguation:
+    - name: Nirvana Health (this entry)
+      url: https://www.meetnirvana.com
+      note: Real-time insurance eligibility / benefits / cost-estimation API for behavioral health. The correct subject of this catalog entry.
+    - name: Nirvana Insurance (Nirvana Technology Inc.)
+      url: https://www.nirvanatech.com
+      note: Different company - connected/telematics insurance for commercial trucking fleets. NOT this entry.
+    - name: Nirvana Labs
+      note: Different company - crypto/Web3 cloud and blockchain infrastructure. NOT this entry.
+    - name: github.com/meetnirvana
+      note: Unrelated individual GitHub account (not the company); no official Nirvana Health GitHub organization was found, so no GitHubOrganization common property was added.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://coverage-api.meetnirvana.com/v1
+      documented: true
+    - protocol: Webhook
+      scheme: https
+      documented: false
+      note: No public webhook/callback endpoint or event schema is documented.
+  authentication:
+    type: apiKey
+    in: header
+    headerName: apikey
+    note: API key issued by Nirvana on request; not OAuth/Bearer.
+  endpointsConfirmedRest:
+    - POST https://coverage-api.meetnirvana.com/v1/discover
+    - POST https://coverage-api.meetnirvana.com/v1/scan
+    - POST https://coverage-api.meetnirvana.com/v1/estimate
+    - POST https://coverage-api.meetnirvana.com/v1/medicaid
+sources:
+  - url: https://www.meetnirvana.com
+    type: Website
+    note: Company overview - insurance eligibility verification platform for behavioral/mental health.
+  - url: https://www.meetnirvana.com/our-technology
+    type: Documentation
+    note: Coverage API capabilities - eligibility, benefits, cost estimation, monitoring, EHR integration.
+  - url: https://nirvana-docs.readme.io/docs/nirvana-overview-v2
+    type: Documentation
+    note: API overview - base URL https://coverage-api.meetnirvana.com/v1, apikey header auth.
+  - url: https://nirvana-docs.readme.io/reference/medicaid_v1_medicaid_post
+    type: APIReference
+    note: Confirms POST /v1/medicaid operation and request fields; operationId naming pattern.
+  - url: https://www.linkedin.com/company/nirvana-hlth
+    type: LinkedIn
+    note: Company LinkedIn profile (nirvana-hlth).
+actions:
+  apisYmlUpdated: true
+  reason: |
+    Cataloged only the documented coverage, scan, estimate, benefits, and
+    Medicaid API surfaces. Claims and Webhooks were excluded because they are
+    not documented public HTTP APIs. Authentication recorded factually as an
+    apikey header (not Bearer). Disambiguated from Nirvana trucking insurance
+    and Nirvana Labs crypto.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

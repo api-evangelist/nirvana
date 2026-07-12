@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/nirvana-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: apiKeyHeader
+  type: apiKey
+  in: header
+  parameter: apikey
+  description: Nirvana issues an API key on request. Pass it in the `apikey` request header
+    on every call. Contact Nirvana to provision a key.
+  sources:
+  - openapi/nirvana-openapi.yml

@@ -153,3 +153,11 @@ common:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+
+common:
+  - type: DomainSecurity
+    url: security/nirvana-domain-security.yml
+  - type: Authentication
+    url: authentication/nirvana-authentication.yml
+  - url: https://www.meetnirvana.com/blog
+    type: Blog

@@ -1,0 +1,228 @@
+openapi: 3.0.1
+info:
+  title: Nirvana Coverage Cost Estimation API
+  description: Nirvana's Coverage API verifies a patient's insurance eligibility, estimates their financial responsibility for an appointment, identifies plan-level details that could lead to a denial, and recovers active insurance using only basic demographic information. Responses normalize complex payer data into structured, consistent JSON for behavioral and mental health workflows.
+  termsOfService: https://www.meetnirvana.com
+  contact:
+    name: Nirvana Support
+    url: https://www.meetnirvana.com
+  version: v1
+servers:
+- url: https://coverage-api.meetnirvana.com
+  description: Nirvana Coverage API production server
+security:
+- apiKeyHeader: []
+tags:
+- name: Cost Estimation
+  description: Real-time per-session patient cost estimates.
+paths:
+  /v1/estimate:
+    post:
+      operationId: estimate_v1_estimate_post
+      tags:
+      - Cost Estimation
+      summary: Estimate patient cost for a session
+      description: Return a real-time cost estimate and benefit details for a patient's session, based on the provider's session cost, network status, and the patient's active benefits.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EstimateRequest'
+      responses:
+        '200':
+          description: Cost estimate and benefits.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EstimateResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/ServerError'
+components:
+  schemas:
+    EstimateResult:
+      type: object
+      properties:
+        coverage_status:
+          type: string
+          description: Active or inactive coverage status.
+        patient_responsibility:
+          type: number
+          format: float
+          description: Estimated amount the patient will owe for the session.
+        benefits:
+          $ref: '#/components/schemas/Benefits'
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Machine-readable error code for error-handling logic.
+        message:
+          type: string
+          description: Human-readable message for troubleshooting and debugging.
+        errors:
+          type: array
+          description: Field-level validation errors, when present.
+          items:
+            type: string
+    Benefits:
+      type: object
+      description: Payer-normalized, specialty-specific benefit details.
+      properties:
+        copay:
+          type: number
+          format: float
+          description: Patient copay for the service.
+        coinsurance:
+          type: number
+          format: float
+          description: Patient coinsurance percentage.
+        deductible:
+          type: number
+          format: float
+          description: Plan deductible amount.
+        remaining_deductible:
+          type: number
+          format: float
+          description: Deductible remaining to be met.
+        out_of_pocket_max:
+          type: number
+          format: float
+          description: Plan out-of-pocket maximum.
+        remaining_out_of_pocket:
+          type: number
+          format: float
+          description: Out-of-pocket maximum remaining.
+        session_limit:
+          type: integer
+          description: Number of covered sessions per benefit period, when applicable.
+        prior_authorization_required:
+          type: boolean
+          description: Whether prior authorization is required for the service.
+        telehealth_covered:
+          type: boolean
+          description: Whether telehealth is covered under the plan.
+    EstimateRequest:
+      allOf:
+      - $ref: '#/components/schemas/CoverageRequest'
+      - type: object
+        properties:
+          provider_session_cost:
+            type: number
+            format: float
+            description: Provider's cash/contract cost for the session, used to compute patient responsibility.
+          in_network:
+            type: boolean
+            description: Whether the provider is in network with the patient's plan.
+    CoverageRequest:
+      type: object
+      required:
+      - member_first_name
+      - member_last_name
+      - member_dob
+      - provider_npi
+      properties:
+        member_first_name:
+          type: string
+          description: Patient's first name.
+        member_last_name:
+          type: string
+          description: Patient's last name.
+        member_dob:
+          type: string
+          format: date
+          description: Patient's date of birth (YYYY-MM-DD).
+        member_id:
+          type: string
+          description: Member ID, when available.
+        member_gender:
+          type: string
+          enum:
+          - M
+          - F
+          description: Patient gender.
+        provider_npi:
+          type: string
+          minLength: 10
+          maxLength: 10
+          description: 10-digit provider National Provider Identifier.
+        payer_id:
+          type: string
+          description: Payer identifier, when known.
+        office_id:
+          type: string
+          description: Your office identifier.
+        patient_id:
+          type: string
+          description: Your internal patient identifier.
+        patient_state:
+          type: string
+          description: Patient's state of residence.
+        next_appointment:
+          type: string
+          format: date
+          description: Date of the patient's next appointment (YYYY-MM-DD).
+        patient_type:
+          type: string
+          enum:
+          - PROSPECT
+          - NEW_PATIENT
+          - EXISTING_PATIENT
+          description: Patient relationship type.
+        cpt_code:
+          type: string
+          description: CPT procedure code for the planned service.
+        modality_code:
+          type: string
+          default: PSY
+          description: Specialty modality code (defaults to PSY for behavioral health).
+        with_alerts:
+          type: boolean
+          default: false
+          description: Include plan-level denial-risk alerts in the response.
+  responses:
+    BadRequest:
+      description: Bad request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnprocessableEntity:
+      description: Request could not be processed (validation error).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: Server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Rate limit exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      in: header
+      name: apikey
+      description: Nirvana issues an API key on request. Pass it in the `apikey` request header on every call. Contact Nirvana to provision a key.

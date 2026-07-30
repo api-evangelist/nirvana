@@ -8,7 +8,20 @@ description: Nirvana is a real-time insurance eligibility, benefits, and patient
   eligibility, plan-level benefits, patient cost-share, session limits, and prior
   authorization details, and can recover active coverage from only basic patient
   demographics.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/nirvana.png
 tags:
 - Healthcare
 - Insurance
@@ -20,123 +33,102 @@ created: '2026-06-21'
 modified: '2026-06-21'
 specificationVersion: '0.19'
 apis:
-- aid: nirvana:eligibility-coverage-api
-  name: Nirvana Eligibility & Coverage API
-  tags:
-  - Eligibility
-  - Coverage
-  - Discover
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: nirvana:nirvana-cost-estimation-api
+  name: Nirvana Health Cost Estimation API
+  description: Real-time per-session patient cost estimates.
   humanURL: https://nirvana-docs.readme.io/docs/nirvana-overview-v2
   baseURL: https://coverage-api.meetnirvana.com/v1
-  properties:
-  - url: https://nirvana-docs.readme.io/docs/nirvana-overview-v2
-    type: Documentation
-  - url: https://nirvana-docs.readme.io/reference
-    type: APIReference
-  - url: openapi/nirvana-openapi.yml
-    type: OpenAPI
-  - url: collections/nirvana.postman_collection.json
-    type: PostmanCollection
-  - url: collections/nirvana.opencollection.json
-    type: OpenCollection
-  description: Real-time insurance eligibility and active-coverage discovery. The
-    discover operation finds active coverage and plan-level details for a patient,
-    including Cardless Verification that recovers coverage from only basic
-    demographics (name, date of birth, ZIP).
-- aid: nirvana:coverage-scan-api
-  name: Nirvana Coverage Scan API
-  tags:
-  - Coverage
-  - Scan
-  - Discovery
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://nirvana-docs.readme.io/docs/nirvana-overview-v2
-  baseURL: https://coverage-api.meetnirvana.com/v1
-  properties:
-  - url: https://nirvana-docs.readme.io/docs/nirvana-overview-v2
-    type: Documentation
-  - url: https://nirvana-docs.readme.io/reference
-    type: APIReference
-  - url: openapi/nirvana-openapi.yml
-    type: OpenAPI
-  - url: collections/nirvana.postman_collection.json
-    type: PostmanCollection
-  - url: collections/nirvana.opencollection.json
-    type: OpenCollection
-  description: Scans multiple payers to locate any active coverage a patient may
-    have when the payer is unknown, returning matched coverage with normalized
-    plan details.
-- aid: nirvana:benefits-api
-  name: Nirvana Benefits API
-  tags:
-  - Benefits
-  - Plan Details
-  - Behavioral Health
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://nirvana-docs.readme.io/docs/nirvana-overview-v2
-  baseURL: https://coverage-api.meetnirvana.com/v1
-  properties:
-  - url: https://www.meetnirvana.com/our-technology
-    type: Documentation
-  - url: https://nirvana-docs.readme.io/reference
-    type: APIReference
-  - url: openapi/nirvana-openapi.yml
-    type: OpenAPI
-  - url: collections/nirvana.postman_collection.json
-    type: PostmanCollection
-  - url: collections/nirvana.opencollection.json
-    type: OpenCollection
-  description: Specialty-specific, payer-normalized benefit details returned within
-    coverage and estimate responses - patient cost-share, copay, coinsurance,
-    deductible, out-of-pocket maximum, session limits, telehealth coverage, and
-    prior authorization requirements for behavioral health services.
-- aid: nirvana:cost-estimation-api
-  name: Nirvana Cost Estimation API
   tags:
   - Cost Estimation
-  - Patient Responsibility
-  - Estimate
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  properties:
+  - type: OpenAPI
+    url: openapi/nirvana-cost-estimation-api-openapi.yml
+  - type: Documentation
+    url: https://nirvana-docs.readme.io/docs/nirvana-overview-v2
+  - type: APIReference
+    url: https://nirvana-docs.readme.io/reference
+  - type: PostmanCollection
+    url: collections/nirvana.postman_collection.json
+  - type: OpenCollection
+    url: collections/nirvana.opencollection.json
+  - type: Documentation
+    url: https://www.meetnirvana.com/our-technology
+  - type: Documentation
+    url: https://www.meetnirvana.com/patient-intake
+  - type: APIReference
+    url: https://nirvana-docs.readme.io/reference/medicaid_v1_medicaid_post
+- aid: nirvana:nirvana-coverage-scan-api
+  name: Nirvana Health Coverage Scan API
+  description: Multi-payer coverage discovery.
   humanURL: https://nirvana-docs.readme.io/docs/nirvana-overview-v2
   baseURL: https://coverage-api.meetnirvana.com/v1
+  tags:
+  - Coverage Scan
   properties:
-  - url: https://www.meetnirvana.com/patient-intake
-    type: Documentation
-  - url: https://nirvana-docs.readme.io/reference
-    type: APIReference
-  - url: openapi/nirvana-openapi.yml
-    type: OpenAPI
-  - url: collections/nirvana.postman_collection.json
-    type: PostmanCollection
-  - url: collections/nirvana.opencollection.json
-    type: OpenCollection
-  description: Real-time per-session patient cost estimates. The estimate operation
-    returns the patient's expected financial responsibility for an appointment
-    based on provider session cost, network status, CPT/modality, and the
-    patient's active benefits.
-- aid: nirvana:medicaid-api
-  name: Nirvana Medicaid API
+  - type: OpenAPI
+    url: openapi/nirvana-coverage-scan-api-openapi.yml
+  - type: Documentation
+    url: https://nirvana-docs.readme.io/docs/nirvana-overview-v2
+  - type: APIReference
+    url: https://nirvana-docs.readme.io/reference
+  - type: PostmanCollection
+    url: collections/nirvana.postman_collection.json
+  - type: OpenCollection
+    url: collections/nirvana.opencollection.json
+  - type: Documentation
+    url: https://www.meetnirvana.com/our-technology
+  - type: Documentation
+    url: https://www.meetnirvana.com/patient-intake
+  - type: APIReference
+    url: https://nirvana-docs.readme.io/reference/medicaid_v1_medicaid_post
+- aid: nirvana:nirvana-eligibility-api
+  name: Nirvana Health Eligibility API
+  description: Active-coverage discovery and eligibility verification.
+  humanURL: https://nirvana-docs.readme.io/docs/nirvana-overview-v2
+  baseURL: https://coverage-api.meetnirvana.com/v1
+  tags:
+  - Eligibility
+  properties:
+  - type: OpenAPI
+    url: openapi/nirvana-eligibility-api-openapi.yml
+  - type: Documentation
+    url: https://nirvana-docs.readme.io/docs/nirvana-overview-v2
+  - type: APIReference
+    url: https://nirvana-docs.readme.io/reference
+  - type: PostmanCollection
+    url: collections/nirvana.postman_collection.json
+  - type: OpenCollection
+    url: collections/nirvana.opencollection.json
+  - type: Documentation
+    url: https://www.meetnirvana.com/our-technology
+  - type: Documentation
+    url: https://www.meetnirvana.com/patient-intake
+  - type: APIReference
+    url: https://nirvana-docs.readme.io/reference/medicaid_v1_medicaid_post
+- aid: nirvana:nirvana-medicaid-api
+  name: Nirvana Health Medicaid API
+  description: Medicaid coverage and eligibility.
+  humanURL: https://nirvana-docs.readme.io/docs/nirvana-overview-v2
+  baseURL: https://coverage-api.meetnirvana.com/v1
   tags:
   - Medicaid
-  - Eligibility
-  - Coverage
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://nirvana-docs.readme.io/reference/medicaid_v1_medicaid_post
-  baseURL: https://coverage-api.meetnirvana.com/v1
   properties:
-  - url: https://nirvana-docs.readme.io/docs/nirvana-overview-v2
-    type: Documentation
-  - url: https://nirvana-docs.readme.io/reference/medicaid_v1_medicaid_post
-    type: APIReference
-  - url: openapi/nirvana-openapi.yml
-    type: OpenAPI
-  - url: collections/nirvana.postman_collection.json
-    type: PostmanCollection
-  - url: collections/nirvana.opencollection.json
-    type: OpenCollection
-  description: Finds active Medicaid coverage and Medicaid-level eligibility details
-    for a patient, supporting Medicaid payers nationwide.
+  - type: OpenAPI
+    url: openapi/nirvana-medicaid-api-openapi.yml
+  - type: Documentation
+    url: https://nirvana-docs.readme.io/docs/nirvana-overview-v2
+  - type: APIReference
+    url: https://nirvana-docs.readme.io/reference
+  - type: PostmanCollection
+    url: collections/nirvana.postman_collection.json
+  - type: OpenCollection
+    url: collections/nirvana.opencollection.json
+  - type: Documentation
+    url: https://www.meetnirvana.com/our-technology
+  - type: Documentation
+    url: https://www.meetnirvana.com/patient-intake
+  - type: APIReference
+    url: https://nirvana-docs.readme.io/reference/medicaid_v1_medicaid_post
 common:
 - type: LinkedIn
   url: https://www.linkedin.com/company/nirvana-hlth

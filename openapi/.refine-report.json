@@ -1,0 +1,20 @@
+{
+  "provider": "nirvana",
+  "sources": [
+    "nirvana-cost-estimation-api-openapi.yml",
+    "nirvana-coverage-scan-api-openapi.yml",
+    "nirvana-eligibility-api-openapi.yml",
+    "nirvana-medicaid-api-openapi.yml"
+  ],
+  "outputs": [
+    "nirvana-cost-estimation-api-openapi.yml",
+    "nirvana-coverage-scan-api-openapi.yml",
+    "nirvana-eligibility-api-openapi.yml",
+    "nirvana-medicaid-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

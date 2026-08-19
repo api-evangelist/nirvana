@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nirvana Coverage Cost Estimation API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apikey",
+      "value": "{{apikey}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cost Estimation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Estimate patient cost for a session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://coverage-api.meetnirvana.com/v1/estimate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return a real-time cost estimate and benefit details for a patient's session, based on the provider's session cost, network status, and the patient's active benefits."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

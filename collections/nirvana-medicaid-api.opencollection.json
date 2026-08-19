@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nirvana Coverage Cost Estimation Medicaid API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apikey",
+      "value": "{{apikey}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Medicaid",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Find Medicaid coverage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://coverage-api.meetnirvana.com/v1/medicaid",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Find active Medicaid coverage and Medicaid-level details for a patient."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

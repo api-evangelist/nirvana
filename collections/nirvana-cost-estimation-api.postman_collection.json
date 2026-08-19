@@ -1,0 +1,410 @@
+{
+  "item": [
+    {
+      "id": "b1353004-dcda-49eb-8af0-691a3cf338a0",
+      "name": "Cost Estimation",
+      "description": {
+        "content": "Real-time per-session patient cost estimates.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9faf7d6e-5e1a-4a1e-9755-0bc5781d2120",
+          "name": "Estimate patient cost for a session",
+          "request": {
+            "name": "Estimate patient cost for a session",
+            "description": {
+              "content": "Return a real-time cost estimate and benefit details for a patient's session, based on the provider's session cost, network status, and the patient's active benefits.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "estimate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"member_first_name\": \"<string>\",\n  \"member_last_name\": \"<string>\",\n  \"member_dob\": \"<date>\",\n  \"provider_npi\": \"<string>\",\n  \"member_id\": \"<string>\",\n  \"member_gender\": \"<string>\",\n  \"payer_id\": \"<string>\",\n  \"office_id\": \"<string>\",\n  \"patient_id\": \"<string>\",\n  \"patient_state\": \"<string>\",\n  \"next_appointment\": \"<date>\",\n  \"patient_type\": \"<string>\",\n  \"cpt_code\": \"<string>\",\n  \"modality_code\": \"PSY\",\n  \"with_alerts\": false,\n  \"provider_session_cost\": \"<float>\",\n  \"in_network\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7732c57b-db6d-4533-ad85-fd24e5d3e115",
+              "name": "Cost estimate and benefits.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "estimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apikey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"member_first_name\": \"<string>\",\n  \"member_last_name\": \"<string>\",\n  \"member_dob\": \"<date>\",\n  \"provider_npi\": \"<string>\",\n  \"member_id\": \"<string>\",\n  \"member_gender\": \"<string>\",\n  \"payer_id\": \"<string>\",\n  \"office_id\": \"<string>\",\n  \"patient_id\": \"<string>\",\n  \"patient_state\": \"<string>\",\n  \"next_appointment\": \"<date>\",\n  \"patient_type\": \"<string>\",\n  \"cpt_code\": \"<string>\",\n  \"modality_code\": \"PSY\",\n  \"with_alerts\": false,\n  \"provider_session_cost\": \"<float>\",\n  \"in_network\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"coverage_status\": \"string\",\n  \"patient_responsibility\": 1190.781704666618,\n  \"benefits\": {\n    \"copay\": 3274.85753816413,\n    \"coinsurance\": 6099.437969064821,\n    \"deductible\": 8011.566233194189,\n    \"remaining_deductible\": 9923.41556508156,\n    \"out_of_pocket_max\": 7650.925662406233,\n    \"remaining_out_of_pocket\": 8701.216178698965,\n    \"session_limit\": 1370,\n    \"prior_authorization_required\": true,\n    \"telehealth_covered\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f266d21c-a0ea-4840-bc23-f0a4b06d37e8",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "estimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apikey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"member_first_name\": \"<string>\",\n  \"member_last_name\": \"<string>\",\n  \"member_dob\": \"<date>\",\n  \"provider_npi\": \"<string>\",\n  \"member_id\": \"<string>\",\n  \"member_gender\": \"<string>\",\n  \"payer_id\": \"<string>\",\n  \"office_id\": \"<string>\",\n  \"patient_id\": \"<string>\",\n  \"patient_state\": \"<string>\",\n  \"next_appointment\": \"<date>\",\n  \"patient_type\": \"<string>\",\n  \"cpt_code\": \"<string>\",\n  \"modality_code\": \"PSY\",\n  \"with_alerts\": false,\n  \"provider_session_cost\": \"<float>\",\n  \"in_network\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd6bab9f-84ba-400b-ae7c-a7efe6bf81ae",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "estimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apikey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"member_first_name\": \"<string>\",\n  \"member_last_name\": \"<string>\",\n  \"member_dob\": \"<date>\",\n  \"provider_npi\": \"<string>\",\n  \"member_id\": \"<string>\",\n  \"member_gender\": \"<string>\",\n  \"payer_id\": \"<string>\",\n  \"office_id\": \"<string>\",\n  \"patient_id\": \"<string>\",\n  \"patient_state\": \"<string>\",\n  \"next_appointment\": \"<date>\",\n  \"patient_type\": \"<string>\",\n  \"cpt_code\": \"<string>\",\n  \"modality_code\": \"PSY\",\n  \"with_alerts\": false,\n  \"provider_session_cost\": \"<float>\",\n  \"in_network\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad281776-2d82-4d9f-b7d7-db0422bb68af",
+              "name": "Request could not be processed (validation error).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "estimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apikey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"member_first_name\": \"<string>\",\n  \"member_last_name\": \"<string>\",\n  \"member_dob\": \"<date>\",\n  \"provider_npi\": \"<string>\",\n  \"member_id\": \"<string>\",\n  \"member_gender\": \"<string>\",\n  \"payer_id\": \"<string>\",\n  \"office_id\": \"<string>\",\n  \"patient_id\": \"<string>\",\n  \"patient_state\": \"<string>\",\n  \"next_appointment\": \"<date>\",\n  \"patient_type\": \"<string>\",\n  \"cpt_code\": \"<string>\",\n  \"modality_code\": \"PSY\",\n  \"with_alerts\": false,\n  \"provider_session_cost\": \"<float>\",\n  \"in_network\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "289dbf6b-b1cd-4f28-9338-1a91919c498c",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "estimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apikey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"member_first_name\": \"<string>\",\n  \"member_last_name\": \"<string>\",\n  \"member_dob\": \"<date>\",\n  \"provider_npi\": \"<string>\",\n  \"member_id\": \"<string>\",\n  \"member_gender\": \"<string>\",\n  \"payer_id\": \"<string>\",\n  \"office_id\": \"<string>\",\n  \"patient_id\": \"<string>\",\n  \"patient_state\": \"<string>\",\n  \"next_appointment\": \"<date>\",\n  \"patient_type\": \"<string>\",\n  \"cpt_code\": \"<string>\",\n  \"modality_code\": \"PSY\",\n  \"with_alerts\": false,\n  \"provider_session_cost\": \"<float>\",\n  \"in_network\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6b41dd9-a5f0-4b96-ab45-00ab4661de87",
+              "name": "Server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "estimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apikey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"member_first_name\": \"<string>\",\n  \"member_last_name\": \"<string>\",\n  \"member_dob\": \"<date>\",\n  \"provider_npi\": \"<string>\",\n  \"member_id\": \"<string>\",\n  \"member_gender\": \"<string>\",\n  \"payer_id\": \"<string>\",\n  \"office_id\": \"<string>\",\n  \"patient_id\": \"<string>\",\n  \"patient_state\": \"<string>\",\n  \"next_appointment\": \"<date>\",\n  \"patient_type\": \"<string>\",\n  \"cpt_code\": \"<string>\",\n  \"modality_code\": \"PSY\",\n  \"with_alerts\": false,\n  \"provider_session_cost\": \"<float>\",\n  \"in_network\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://coverage-api.meetnirvana.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "apikey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c61a66e8-0841-40c4-a6b5-77b1f66c4c61",
+    "name": "Nirvana Coverage Cost Estimation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Nirvana's Coverage API verifies a patient's insurance eligibility, estimates their financial responsibility for an appointment, identifies plan-level details that could lead to a denial, and recovers active insurance using only basic demographic information. Responses normalize complex payer data into structured, consistent JSON for behavioral and mental health workflows.\n\nContact Support:\n Name: Nirvana Support",
+      "type": "text/plain"
+    }
+  }
+}

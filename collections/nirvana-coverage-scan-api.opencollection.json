@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nirvana Coverage Cost Estimation Coverage Scan API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apikey",
+      "value": "{{apikey}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Coverage Scan",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Scan payers for active coverage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://coverage-api.meetnirvana.com/v1/scan",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Scan multiple payers to find any active coverage a patient may have when the payer is unknown."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

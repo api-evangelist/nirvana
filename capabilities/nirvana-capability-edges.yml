@@ -1,0 +1,55 @@
+slug: nirvana
+provider: Nirvana Health
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Healthcare Providers
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: Eligibility
+  spec_file: nirvana-eligibility-api-openapi.yml
+  capability_id: BC-2800.30
+  capability_id_l1: BC-2800
+  capability_name: Eligibility & Benefits Verification
+  confidence: 0.9
+  evidence: POST /v1/discover  discover_v1_discover_post  Discover active coverage — "verifies a patient's
+    insurance eligibility"
+  reason: Operation discovers/verifies a patient's active insurance coverage and benefits, which is squarely
+    Eligibility & Benefits Verification.
+- tag: Cost Estimation
+  spec_file: nirvana-cost-estimation-api-openapi.yml
+  capability_id: BC-2800.40
+  capability_id_l1: BC-2800
+  capability_name: Financial Counselling & Estimation
+  confidence: 0.88
+  evidence: POST /v1/estimate  estimate_v1_estimate_post  Estimate patient cost for a session; schema
+    EstimateResult; "estimates their financial responsibility for an appointment"
+  reason: The operation computes the patient's out-of-pocket responsibility for an upcoming session before
+    service, which is pre-service financial estimation under Patient Access Management.
+- tag: Coverage Scan
+  spec_file: nirvana-coverage-scan-api-openapi.yml
+  capability_id: BC-2800.30
+  capability_id_l1: BC-2800
+  capability_name: Eligibility & Benefits Verification
+  confidence: 0.88
+  evidence: POST /v1/scan  scan_v1_scan_post  Scan payers for active coverage; schemas CoverageRequest,
+    CoverageResult, Benefits
+  reason: Scanning payers to find active insurance coverage and benefits for a patient is insurance eligibility
+    and benefits verification ahead of service delivery.
+- tag: Medicaid
+  spec_file: nirvana-medicaid-api-openapi.yml
+  capability_id: BC-2800.30
+  capability_id_l1: BC-2800
+  capability_name: Eligibility & Benefits Verification
+  confidence: 0.85
+  evidence: POST /v1/medicaid  medicaid_v1_medicaid_post  Find Medicaid coverage; schemas MedicaidRequest,
+    CoverageResult, Benefits
+  reason: Finding a patient's Medicaid coverage returns eligibility and benefit details from a payer programme
+    — the same eligibility/benefits verification capability specialised to Medicaid.

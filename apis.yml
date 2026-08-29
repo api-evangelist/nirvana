@@ -141,6 +141,9 @@ apis:
   - type: APIReference
     url: https://nirvana-docs.readme.io/reference/medicaid_v1_medicaid_post
 common:
+- type: CapabilityMap
+  url: capabilities/nirvana-capability-edges.yml
+  name: Nirvana Health Business Capability Map
 - type: LinkedIn
   url: https://www.linkedin.com/company/nirvana-hlth
 - type: Website

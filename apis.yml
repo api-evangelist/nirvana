@@ -8,6 +8,17 @@ description: Nirvana is a real-time insurance eligibility, benefits, and patient
   eligibility, plan-level benefits, patient cost-share, session limits, and prior
   authorization details, and can recover active coverage from only basic patient
   demographics.
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve

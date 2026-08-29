@@ -19,37 +19,36 @@ edges:
   capability_id_l1: BC-2800
   capability_name: Eligibility & Benefits Verification
   confidence: 0.9
-  evidence: POST /v1/discover  discover_v1_discover_post  Discover active coverage — "verifies a patient's
-    insurance eligibility"
-  reason: Operation discovers/verifies a patient's active insurance coverage and benefits, which is squarely
-    Eligibility & Benefits Verification.
-- tag: Cost Estimation
-  spec_file: nirvana-cost-estimation-api-openapi.yml
-  capability_id: BC-2800.40
-  capability_id_l1: BC-2800
-  capability_name: Financial Counselling & Estimation
-  confidence: 0.88
-  evidence: POST /v1/estimate  estimate_v1_estimate_post  Estimate patient cost for a session; schema
-    EstimateResult; "estimates their financial responsibility for an appointment"
-  reason: The operation computes the patient's out-of-pocket responsibility for an upcoming session before
-    service, which is pre-service financial estimation under Patient Access Management.
+  evidence: POST /v1/discover "Discover active coverage"; "verifies a patient's insurance eligibility,
+    estimates their financial responsibility"
+  reason: Real-time discovery and verification of a patient's active insurance coverage and plan-level
+    benefits — Eligibility & Benefits Verification.
 - tag: Coverage Scan
   spec_file: nirvana-coverage-scan-api-openapi.yml
   capability_id: BC-2800.30
   capability_id_l1: BC-2800
   capability_name: Eligibility & Benefits Verification
   confidence: 0.88
-  evidence: POST /v1/scan  scan_v1_scan_post  Scan payers for active coverage; schemas CoverageRequest,
-    CoverageResult, Benefits
-  reason: Scanning payers to find active insurance coverage and benefits for a patient is insurance eligibility
+  evidence: POST /v1/scan "Scan payers for active coverage"; "verifies a patient's insurance eligibility,
+    ... recovers active insurance using only basic demographic information"
+  reason: Searches payers to establish active insurance coverage for a patient — insurance eligibility
     and benefits verification ahead of service delivery.
+- tag: Cost Estimation
+  spec_file: nirvana-cost-estimation-api-openapi.yml
+  capability_id: BC-2800.40
+  capability_id_l1: BC-2800
+  capability_name: Financial Counselling & Estimation
+  confidence: 0.85
+  evidence: POST /v1/estimate "Estimate patient cost for a session"; schemas EstimateRequest, EstimateResult,
+    Benefits
+  reason: Computes the patient's out-of-pocket financial responsibility for an upcoming appointment from
+    plan benefits — pre-service patient cost estimation, the core of Financial Counselling & Estimation.
 - tag: Medicaid
   spec_file: nirvana-medicaid-api-openapi.yml
   capability_id: BC-2800.30
   capability_id_l1: BC-2800
   capability_name: Eligibility & Benefits Verification
   confidence: 0.85
-  evidence: POST /v1/medicaid  medicaid_v1_medicaid_post  Find Medicaid coverage; schemas MedicaidRequest,
-    CoverageResult, Benefits
-  reason: Finding a patient's Medicaid coverage returns eligibility and benefit details from a payer programme
-    — the same eligibility/benefits verification capability specialised to Medicaid.
+  evidence: POST /v1/medicaid "Find Medicaid coverage"; schemas MedicaidRequest, CoverageResult, Benefits
+  reason: Payer-specific (Medicaid) variant of the coverage lookup, returning eligibility and benefits
+    — same Eligibility & Benefits Verification capability.

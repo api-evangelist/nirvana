@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Nirvana Coverage Cost Estimation API
   description: Nirvana's Coverage API verifies a patient's insurance eligibility, estimates their financial responsibility for an appointment, identifies plan-level details that could lead to a denial, and recovers active insurance using only basic demographic information. Responses normalize complex payer data into structured, consistent JSON for behavioral and mental health workflows.
@@ -47,33 +47,38 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: Server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnprocessableEntity:
+      description: Request could not be processed (validation error).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Rate limit exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    EstimateResult:
-      type: object
-      properties:
-        coverage_status:
-          type: string
-          description: Active or inactive coverage status.
-        patient_responsibility:
-          type: number
-          format: float
-          description: Estimated amount the patient will owe for the session.
-        benefits:
-          $ref: '#/components/schemas/Benefits'
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Machine-readable error code for error-handling logic.
-        message:
-          type: string
-          description: Human-readable message for troubleshooting and debugging.
-        errors:
-          type: array
-          description: Field-level validation errors, when present.
-          items:
-            type: string
     Benefits:
       type: object
       description: Payer-normalized, specialty-specific benefit details.
@@ -111,18 +116,6 @@ components:
         telehealth_covered:
           type: boolean
           description: Whether telehealth is covered under the plan.
-    EstimateRequest:
-      allOf:
-      - $ref: '#/components/schemas/CoverageRequest'
-      - type: object
-        properties:
-          provider_session_cost:
-            type: number
-            format: float
-            description: Provider's cash/contract cost for the session, used to compute patient responsibility.
-          in_network:
-            type: boolean
-            description: Whether the provider is in network with the patient's plan.
     CoverageRequest:
       type: object
       required:
@@ -189,37 +182,44 @@ components:
           type: boolean
           default: false
           description: Include plan-level denial-risk alerts in the response.
-  responses:
-    BadRequest:
-      description: Bad request.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    UnprocessableEntity:
-      description: Request could not be processed (validation error).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ServerError:
-      description: Server error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    TooManyRequests:
-      description: Rate limit exceeded.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    EstimateRequest:
+      allOf:
+      - $ref: '#/components/schemas/CoverageRequest'
+      - type: object
+        properties:
+          provider_session_cost:
+            type: number
+            format: float
+            description: Provider's cash/contract cost for the session, used to compute patient responsibility.
+          in_network:
+            type: boolean
+            description: Whether the provider is in network with the patient's plan.
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Machine-readable error code for error-handling logic.
+        message:
+          type: string
+          description: Human-readable message for troubleshooting and debugging.
+        errors:
+          type: array
+          description: Field-level validation errors, when present.
+          items:
+            type: string
+    EstimateResult:
+      type: object
+      properties:
+        coverage_status:
+          type: string
+          description: Active or inactive coverage status.
+        patient_responsibility:
+          type: number
+          format: float
+          description: Estimated amount the patient will owe for the session.
+        benefits:
+          $ref: '#/components/schemas/Benefits'
   securitySchemes:
     apiKeyHeader:
       type: apiKey

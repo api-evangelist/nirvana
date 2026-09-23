@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Nirvana Coverage Cost Estimation Medicaid API
+  title: Nirvana Coverage Medicaid API
   description: Nirvana's Coverage API verifies a patient's insurance eligibility, estimates their financial responsibility for an appointment, identifies plan-level details that could lead to a denial, and recovers active insurance using only basic demographic information. Responses normalize complex payer data into structured, consistent JSON for behavioral and mental health workflows.
   termsOfService: https://www.meetnirvana.com
   contact:
@@ -49,23 +49,44 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: Server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    UnprocessableEntity:
+      description: Request could not be processed (validation error).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Rate limit exceeded.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: No matching coverage found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    MedicaidRequest:
-      $ref: '#/components/schemas/CoverageRequest'
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Machine-readable error code for error-handling logic.
-        message:
-          type: string
-          description: Human-readable message for troubleshooting and debugging.
-        errors:
-          type: array
-          description: Field-level validation errors, when present.
-          items:
-            type: string
     Benefits:
       type: object
       description: Payer-normalized, specialty-specific benefit details.
@@ -188,43 +209,22 @@ components:
           description: Plan-level alerts that could lead to a denial.
           items:
             type: string
-  responses:
-    NotFound:
-      description: No matching coverage found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    UnprocessableEntity:
-      description: Request could not be processed (validation error).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ServerError:
-      description: Server error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    TooManyRequests:
-      description: Rate limit exceeded.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    MedicaidRequest:
+      $ref: '#/components/schemas/CoverageRequest'
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Machine-readable error code for error-handling logic.
+        message:
+          type: string
+          description: Human-readable message for troubleshooting and debugging.
+        errors:
+          type: array
+          description: Field-level validation errors, when present.
+          items:
+            type: string
   securitySchemes:
     apiKeyHeader:
       type: apiKey

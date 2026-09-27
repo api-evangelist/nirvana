@@ -48,8 +48,8 @@ paths:
           $ref: '#/components/responses/ServerError'
 components:
   responses:
-    Unauthorized:
-      description: Missing or invalid API key.
+    BadRequest:
+      description: Bad request.
       content:
         application/json:
           schema:
@@ -66,56 +66,31 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     TooManyRequests:
       description: Rate limit exceeded.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Benefits:
+    EstimateResult:
       type: object
-      description: Payer-normalized, specialty-specific benefit details.
       properties:
-        copay:
+        coverage_status:
+          type: string
+          description: Active or inactive coverage status.
+        patient_responsibility:
           type: number
           format: float
-          description: Patient copay for the service.
-        coinsurance:
-          type: number
-          format: float
-          description: Patient coinsurance percentage.
-        deductible:
-          type: number
-          format: float
-          description: Plan deductible amount.
-        remaining_deductible:
-          type: number
-          format: float
-          description: Deductible remaining to be met.
-        out_of_pocket_max:
-          type: number
-          format: float
-          description: Plan out-of-pocket maximum.
-        remaining_out_of_pocket:
-          type: number
-          format: float
-          description: Out-of-pocket maximum remaining.
-        session_limit:
-          type: integer
-          description: Number of covered sessions per benefit period, when applicable.
-        prior_authorization_required:
-          type: boolean
-          description: Whether prior authorization is required for the service.
-        telehealth_covered:
-          type: boolean
-          description: Whether telehealth is covered under the plan.
+          description: Estimated amount the patient will owe for the session.
+        benefits:
+          $ref: '#/components/schemas/Benefits'
     CoverageRequest:
       type: object
       required:
@@ -182,6 +157,43 @@ components:
           type: boolean
           default: false
           description: Include plan-level denial-risk alerts in the response.
+    Benefits:
+      type: object
+      description: Payer-normalized, specialty-specific benefit details.
+      properties:
+        copay:
+          type: number
+          format: float
+          description: Patient copay for the service.
+        coinsurance:
+          type: number
+          format: float
+          description: Patient coinsurance percentage.
+        deductible:
+          type: number
+          format: float
+          description: Plan deductible amount.
+        remaining_deductible:
+          type: number
+          format: float
+          description: Deductible remaining to be met.
+        out_of_pocket_max:
+          type: number
+          format: float
+          description: Plan out-of-pocket maximum.
+        remaining_out_of_pocket:
+          type: number
+          format: float
+          description: Out-of-pocket maximum remaining.
+        session_limit:
+          type: integer
+          description: Number of covered sessions per benefit period, when applicable.
+        prior_authorization_required:
+          type: boolean
+          description: Whether prior authorization is required for the service.
+        telehealth_covered:
+          type: boolean
+          description: Whether telehealth is covered under the plan.
     EstimateRequest:
       allOf:
       - $ref: '#/components/schemas/CoverageRequest'
@@ -208,18 +220,6 @@ components:
           description: Field-level validation errors, when present.
           items:
             type: string
-    EstimateResult:
-      type: object
-      properties:
-        coverage_status:
-          type: string
-          description: Active or inactive coverage status.
-        patient_responsibility:
-          type: number
-          format: float
-          description: Estimated amount the patient will owe for the session.
-        benefits:
-          $ref: '#/components/schemas/Benefits'
   securitySchemes:
     apiKeyHeader:
       type: apiKey

@@ -48,8 +48,8 @@ paths:
           $ref: '#/components/responses/ServerError'
 components:
   responses:
-    Unauthorized:
-      description: Missing or invalid API key.
+    UnprocessableEntity:
+      description: Request could not be processed (validation error).
       content:
         application/json:
           schema:
@@ -66,8 +66,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    UnprocessableEntity:
-      description: Request could not be processed (validation error).
+    Unauthorized:
+      description: Missing or invalid API key.
       content:
         application/json:
           schema:
@@ -116,39 +116,6 @@ components:
         telehealth_covered:
           type: boolean
           description: Whether telehealth is covered under the plan.
-    CoverageResult:
-      type: object
-      properties:
-        coverage_status:
-          type: string
-          description: Active or inactive coverage status for the patient.
-        payer_name:
-          type: string
-          description: Normalized payer name.
-        plan_name:
-          type: string
-          description: Normalized plan name.
-        benefits:
-          $ref: '#/components/schemas/Benefits'
-        alerts:
-          type: array
-          description: Plan-level alerts that could lead to a denial.
-          items:
-            type: string
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Machine-readable error code for error-handling logic.
-        message:
-          type: string
-          description: Human-readable message for troubleshooting and debugging.
-        errors:
-          type: array
-          description: Field-level validation errors, when present.
-          items:
-            type: string
     CoverageRequest:
       type: object
       required:
@@ -215,6 +182,39 @@ components:
           type: boolean
           default: false
           description: Include plan-level denial-risk alerts in the response.
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Machine-readable error code for error-handling logic.
+        message:
+          type: string
+          description: Human-readable message for troubleshooting and debugging.
+        errors:
+          type: array
+          description: Field-level validation errors, when present.
+          items:
+            type: string
+    CoverageResult:
+      type: object
+      properties:
+        coverage_status:
+          type: string
+          description: Active or inactive coverage status for the patient.
+        payer_name:
+          type: string
+          description: Normalized payer name.
+        plan_name:
+          type: string
+          description: Normalized plan name.
+        benefits:
+          $ref: '#/components/schemas/Benefits'
+        alerts:
+          type: array
+          description: Plan-level alerts that could lead to a denial.
+          items:
+            type: string
   securitySchemes:
     apiKeyHeader:
       type: apiKey

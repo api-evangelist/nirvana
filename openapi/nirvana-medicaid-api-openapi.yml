@@ -50,14 +50,8 @@ paths:
           $ref: '#/components/responses/ServerError'
 components:
   responses:
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: No matching coverage found.
+    UnprocessableEntity:
+      description: Request could not be processed (validation error).
       content:
         application/json:
           schema:
@@ -74,8 +68,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    UnprocessableEntity:
-      description: Request could not be processed (validation error).
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: No matching coverage found.
       content:
         application/json:
           schema:
@@ -124,27 +124,6 @@ components:
         telehealth_covered:
           type: boolean
           description: Whether telehealth is covered under the plan.
-    MedicaidRequest:
-      $ref: '#/components/schemas/CoverageRequest'
-    CoverageResult:
-      type: object
-      properties:
-        coverage_status:
-          type: string
-          description: Active or inactive coverage status for the patient.
-        payer_name:
-          type: string
-          description: Normalized payer name.
-        plan_name:
-          type: string
-          description: Normalized plan name.
-        benefits:
-          $ref: '#/components/schemas/Benefits'
-        alerts:
-          type: array
-          description: Plan-level alerts that could lead to a denial.
-          items:
-            type: string
     Error:
       type: object
       properties:
@@ -159,6 +138,8 @@ components:
           description: Field-level validation errors, when present.
           items:
             type: string
+    MedicaidRequest:
+      $ref: '#/components/schemas/CoverageRequest'
     CoverageRequest:
       type: object
       required:
@@ -225,6 +206,25 @@ components:
           type: boolean
           default: false
           description: Include plan-level denial-risk alerts in the response.
+    CoverageResult:
+      type: object
+      properties:
+        coverage_status:
+          type: string
+          description: Active or inactive coverage status for the patient.
+        payer_name:
+          type: string
+          description: Normalized payer name.
+        plan_name:
+          type: string
+          description: Normalized plan name.
+        benefits:
+          $ref: '#/components/schemas/Benefits'
+        alerts:
+          type: array
+          description: Plan-level alerts that could lead to a denial.
+          items:
+            type: string
   securitySchemes:
     apiKeyHeader:
       type: apiKey

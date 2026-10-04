@@ -48,8 +48,8 @@ paths:
           $ref: '#/components/responses/ServerError'
 components:
   responses:
-    Unauthorized:
-      description: Missing or invalid API key.
+    UnprocessableEntity:
+      description: Request could not be processed (validation error).
       content:
         application/json:
           schema:
@@ -66,8 +66,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    UnprocessableEntity:
-      description: Request could not be processed (validation error).
+    Unauthorized:
+      description: Missing or invalid API key.
       content:
         application/json:
           schema:
@@ -116,18 +116,18 @@ components:
         telehealth_covered:
           type: boolean
           description: Whether telehealth is covered under the plan.
-    EstimateResult:
-      type: object
-      properties:
-        coverage_status:
-          type: string
-          description: Active or inactive coverage status.
-        patient_responsibility:
-          type: number
-          format: float
-          description: Estimated amount the patient will owe for the session.
-        benefits:
-          $ref: '#/components/schemas/Benefits'
+    EstimateRequest:
+      allOf:
+      - $ref: '#/components/schemas/CoverageRequest'
+      - type: object
+        properties:
+          provider_session_cost:
+            type: number
+            format: float
+            description: Provider's cash/contract cost for the session, used to compute patient responsibility.
+          in_network:
+            type: boolean
+            description: Whether the provider is in network with the patient's plan.
     Error:
       type: object
       properties:
@@ -208,18 +208,18 @@ components:
           type: boolean
           default: false
           description: Include plan-level denial-risk alerts in the response.
-    EstimateRequest:
-      allOf:
-      - $ref: '#/components/schemas/CoverageRequest'
-      - type: object
-        properties:
-          provider_session_cost:
-            type: number
-            format: float
-            description: Provider's cash/contract cost for the session, used to compute patient responsibility.
-          in_network:
-            type: boolean
-            description: Whether the provider is in network with the patient's plan.
+    EstimateResult:
+      type: object
+      properties:
+        coverage_status:
+          type: string
+          description: Active or inactive coverage status.
+        patient_responsibility:
+          type: number
+          format: float
+          description: Estimated amount the patient will owe for the session.
+        benefits:
+          $ref: '#/components/schemas/Benefits'
   securitySchemes:
     apiKeyHeader:
       type: apiKey

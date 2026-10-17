@@ -48,8 +48,8 @@ paths:
           $ref: '#/components/responses/ServerError'
 components:
   responses:
-    UnprocessableEntity:
-      description: Request could not be processed (validation error).
+    TooManyRequests:
+      description: Rate limit exceeded.
       content:
         application/json:
           schema:
@@ -72,13 +72,27 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    TooManyRequests:
-      description: Rate limit exceeded.
+    UnprocessableEntity:
+      description: Request could not be processed (validation error).
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Machine-readable error code for error-handling logic.
+        message:
+          type: string
+          description: Human-readable message for troubleshooting and debugging.
+        errors:
+          type: array
+          description: Field-level validation errors, when present.
+          items:
+            type: string
     Benefits:
       type: object
       description: Payer-normalized, specialty-specific benefit details.
@@ -182,20 +196,6 @@ components:
           type: boolean
           default: false
           description: Include plan-level denial-risk alerts in the response.
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Machine-readable error code for error-handling logic.
-        message:
-          type: string
-          description: Human-readable message for troubleshooting and debugging.
-        errors:
-          type: array
-          description: Field-level validation errors, when present.
-          items:
-            type: string
     CoverageResult:
       type: object
       properties:

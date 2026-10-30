@@ -1,4 +1,4 @@
-# Nirvana Health (nirvana)
+# Nirvana Health
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,149 +66,84 @@
 
 Nirvana is a real-time insurance eligibility, benefits, and patient cost-estimation platform purpose-built for behavioral and mental health. Its Coverage API normalizes complex payer data into structured JSON, returning eligibility, plan-level benefits, patient cost-share, session limits, and prior authorization details, and can recover active coverage from only basic patient demographics.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/nirvana/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/nirvana/refs/heads/main/apis.yml)
+**Areas:** Healthcare · Insurance · Eligibility · Benefits · Cost Estimation · Behavioral Health
 
-## Tags
+## Nirvana Health on APIs.io
 
-- Healthcare
-- Insurance
-- Eligibility
-- Benefits
-- Cost Estimation
-- Behavioral Health
+Everything profiled for Nirvana Health is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/nirvana/](https://apis.io/providers/nirvana/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (4)
 
-- **Created:** 2026-06-21
-- **Modified:** 2026-06-21
+- [Nirvana Health Cost Estimation API](https://apis.io/apis/nirvana/nirvana-cost-estimation-api/) — Real-time per-session patient cost estimates.
+- [Nirvana Health Coverage Scan API](https://apis.io/apis/nirvana/nirvana-coverage-scan-api/) — Multi-payer coverage discovery.
+- [Nirvana Health Eligibility API](https://apis.io/apis/nirvana/nirvana-eligibility-api/) — Active-coverage discovery and eligibility verification.
+- [Nirvana Health Medicaid API](https://apis.io/apis/nirvana/nirvana-medicaid-api/) — Medicaid coverage and eligibility.
 
-## APIs
+### Published properties
 
-### Nirvana Eligibility & Coverage API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Real-time insurance eligibility and active-coverage discovery. The discover operation finds active coverage and plan-level details for a patient, including Cardless Verification that recovers coverage from only basic demographics (name, date of birth, ZIP).
+#### Agentic access (1)
 
-- **Human URL:** [https://nirvana-docs.readme.io/docs/nirvana-overview-v2](https://nirvana-docs.readme.io/docs/nirvana-overview-v2)
-- **Base URL:** `https://coverage-api.meetnirvana.com/v1`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Nirvana Agentic Access](https://apis.io/agentic-access/nirvana/nirvana-agentic-access/)
 
-- Eligibility
-- Coverage
-- Discover
+#### Collections (5)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://nirvana-docs.readme.io/docs/nirvana-overview-v2)
-- [API Reference](https://nirvana-docs.readme.io/reference)
-- [OpenAPI](openapi/nirvana-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/nirvana.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/nirvana.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Nirvana Coverage API](https://apis.io/collections/nirvana/open-nirvana/)
+- [Nirvana Coverage Cost Estimation API](https://apis.io/collections/nirvana/open-nirvana-cost-estimation-api/)
+- [Nirvana Coverage Cost Estimation Coverage Scan API](https://apis.io/collections/nirvana/open-nirvana-coverage-scan-api/)
+- [Nirvana Coverage Cost Estimation Eligibility API](https://apis.io/collections/nirvana/open-nirvana-eligibility-api/)
+- [Nirvana Coverage Cost Estimation Medicaid API](https://apis.io/collections/nirvana/open-nirvana-medicaid-api/)
 
-### Nirvana Coverage Scan API
+#### Security (2)
 
-Scans multiple payers to locate any active coverage a patient may have when the payer is unknown, returning matched coverage with normalized plan details.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://nirvana-docs.readme.io/docs/nirvana-overview-v2](https://nirvana-docs.readme.io/docs/nirvana-overview-v2)
-- **Base URL:** `https://coverage-api.meetnirvana.com/v1`
+- [Nirvana Authentication](https://apis.io/security/nirvana/nirvana-authentication/)
+- [Nirvana Domain Security](https://apis.io/security/nirvana/nirvana-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Coverage
-- Scan
-- Discovery
+Published plans, tiers and prices.
 
-#### Properties
+- [Nirvana Plans Pricing](https://apis.io/plans/nirvana/nirvana-plans-pricing/)
 
-- [Documentation](https://nirvana-docs.readme.io/docs/nirvana-overview-v2)
-- [API Reference](https://nirvana-docs.readme.io/reference)
-- [OpenAPI](openapi/nirvana-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/nirvana.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/nirvana.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Nirvana Benefits API
+Published request limits.
 
-Specialty-specific, payer-normalized benefit details returned within coverage and estimate responses - patient cost-share, copay, coinsurance, deductible, out-of-pocket maximum, session limits, telehealth coverage, and prior authorization requirements for behavioral health services.
+- [Nirvana Rate Limits](https://apis.io/rate-limits/nirvana/nirvana-rate-limits/)
 
-- **Human URL:** [https://nirvana-docs.readme.io/docs/nirvana-overview-v2](https://nirvana-docs.readme.io/docs/nirvana-overview-v2)
-- **Base URL:** `https://coverage-api.meetnirvana.com/v1`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Benefits
-- Plan Details
-- Behavioral Health
+- [Nirvana Finops](https://apis.io/finops/nirvana/nirvana-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://www.meetnirvana.com/our-technology)
-- [API Reference](https://nirvana-docs.readme.io/reference)
-- [OpenAPI](openapi/nirvana-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/nirvana.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/nirvana.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Nirvana Cost Estimation API
+- [Blog](https://www.meetnirvana.com/blog)
 
-Real-time per-session patient cost estimates. The estimate operation returns the patient's expected financial responsibility for an appointment based on provider session cost, network status, CPT/modality, and the patient's active benefits.
+## API Evangelist rating
 
-- **Human URL:** [https://nirvana-docs.readme.io/docs/nirvana-overview-v2](https://nirvana-docs.readme.io/docs/nirvana-overview-v2)
-- **Base URL:** `https://coverage-api.meetnirvana.com/v1`
+**Unrated** — no public website could be reached for this company, so there was almost nothing to measure and nothing a reader could check.
 
-#### Tags
+This is not a score of zero. No rating is published for this company. If that is wrong because something public exists that we missed, say so on this repository or email [info@apievangelist.com](mailto:info@apievangelist.com) and it will be re-run — free, and no justification needed.
 
-- Cost Estimation
-- Patient Responsibility
-- Estimate
+## How this profile is made
 
-#### Properties
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-- [Documentation](https://www.meetnirvana.com/patient-intake)
-- [API Reference](https://nirvana-docs.readme.io/reference)
-- [OpenAPI](openapi/nirvana-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/nirvana.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/nirvana.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Nirvana Health: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-### Nirvana Medicaid API
+## Open an issue
 
-Finds active Medicaid coverage and Medicaid-level eligibility details for a patient, supporting Medicaid payers nationwide.
-
-- **Human URL:** [https://nirvana-docs.readme.io/reference/medicaid_v1_medicaid_post](https://nirvana-docs.readme.io/reference/medicaid_v1_medicaid_post)
-- **Base URL:** `https://coverage-api.meetnirvana.com/v1`
-
-#### Tags
-
-- Medicaid
-- Eligibility
-- Coverage
-
-#### Properties
-
-- [Documentation](https://nirvana-docs.readme.io/docs/nirvana-overview-v2)
-- [API Reference](https://nirvana-docs.readme.io/reference/medicaid_v1_medicaid_post)
-- [OpenAPI](openapi/nirvana-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/nirvana.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/nirvana.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/nirvana-hlth)
-- [Website](https://www.meetnirvana.com)
-- [Documentation](https://nirvana-docs.readme.io/docs/nirvana-overview-v2)
-- [Plans](plans/nirvana-plans-pricing.yml)
-- [Rate Limits](rate-limits/nirvana-rate-limits.yml)
-- [Fin Ops](finops/nirvana-finops.yml)
-
-## Authentication
-
-The Nirvana Coverage API authenticates with a customer-specific API key passed in the `apikey` request header (not an OAuth Bearer token). Contact Nirvana to be provisioned a key.
-
-## Notes
-
-- No official Nirvana Health GitHub organization was found, so no GitHub Organization common property is listed.
-- Pricing is sales-led and not publicly disclosed; plans, rate limits, and FinOps artifacts are marked unreconciled.
-- "Claims" and "Webhooks" are not documented public HTTP APIs and are therefore not cataloged as APIs; see `review.yml` for disambiguation and scope notes (distinct from Nirvana trucking insurance and Nirvana Labs crypto).
-
-## Maintainers
-
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/nirvana/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
